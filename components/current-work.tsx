@@ -2,41 +2,28 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Clock, Code, Zap, Users } from "lucide-react"
+import { Clock, LucideIcon } from "lucide-react"
+import * as LucideIcons from "lucide-react"
+import currentWorkData from "@/data/current-work.json"
 
-const currentProjects = [
-  // {
-  //   id: 1,
-  //   title: "AI-Powered Dashboard App",
-  //   description:
-  //     "Building an intelligent analytics dashboard with machine learning capabilities for real-time data insights.",
-  //   progress: 75,
-  //   status: "In Development",
-  //   tech: ["React", "Python", "TensorFlow", "PostgreSQL"],
-  //   icon: Zap,
-  //   color: "from-purple-500 to-pink-500",
-  // },
-  // {
-  //   id: 2,
-  //   title: "Open Source UI Library",
-  //   description: "Contributing to a comprehensive React component library with accessibility-first design principles.",
-  //   progress: 60,
-  //   status: "Contributing",
-  //   tech: ["React", "TypeScript", "Storybook", "Jest"],
-  //   icon: Code,
-  //   color: "from-blue-500 to-cyan-500",
-  // },
-  // {
-  //   id: 3,
-  //   title: "Team Collaboration Platform",
-  //   description: "Developing a modern workspace solution with real-time collaboration and project management features.",
-  //   progress: 40,
-  //   status: "Planning",
-  //   tech: ["Next.js", "Socket.io", "Redis", "Docker"],
-  //   icon: Users,
-  //   color: "from-green-500 to-emerald-500",
-  // },
-]
+// Function to get any Lucide icon by name
+const getIcon = (iconName: string): LucideIcon => {
+  const icons = LucideIcons as unknown as Record<string, LucideIcon>
+  return icons[iconName] || icons["Zap"]
+}
+
+interface CurrentProject {
+  id: number | string
+  title: string
+  description: string
+  progress: number
+  status: string
+  tech: string[]
+  icon: string
+  color: string
+}
+
+const currentProjects: CurrentProject[] = currentWorkData.currentProjects
 
 export default function CurrentWork() {
   const ref = useRef(null)
@@ -80,7 +67,10 @@ export default function CurrentWork() {
                   <div
                     className={`w-16 h-16 bg-gradient-to-r ${project.color} rounded-xl flex items-center justify-center mb-4`}
                   >
-                    <project.icon size={32} className="text-white" />
+                    {(() => {
+                      const IconComponent = getIcon(project.icon)
+                      return <IconComponent size={32} className="text-white" />
+                    })()}
                   </div>
 
                   {/* Status Badge */}

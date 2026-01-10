@@ -2,52 +2,11 @@
 
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
+import skillsData from "@/data/skills.json"
+import certificationsData from "@/data/certifications.json"
 
-const Certifications = [
-  "Zewail City AI",
-  "Huawei HCIA-AI",
-  "ITI AI",
-  "Robotics Corner Software",
-]
-
-const skillCategories = [
-  {
-    title: "Software",
-    skills: [
-      { name: "C++", level: 90 },
-      { name: "Python", level: 95 },
-      { name: "JavaScript", level: 35 },
-      { name: "C", level: 60 },
-    ],
-  },
-  {
-    title: "AI",
-    skills: [
-      { name: "Machine Learning", level: 88 },
-      { name: "Computer Vision", level: 80 },
-      { name: "Natural Language Processing", level: 55 },
-      { name: "Generative AI", level: 60 },
-    ],
-  },
-  {
-    title: "Robotics",
-    skills: [
-      { name: "ROS", level: 88 },
-      { name: "Autonomous Driving", level: 80 },
-      { name: "Control Systems", level: 55 },
-      { name: "Robotics", level: 60 },
-    ],
-  },
-  {
-    title: "Tools & Others",
-    skills: [
-      { name: "Git/GitHub", level: 93 },
-      { name: "Linux", level: 78 },
-      { name: "Qt", level: 75 },
-      // { name: "Figma", level: 88 },
-    ],
-  },
-]
+const { skillCategories } = skillsData
+const { certifications } = certificationsData
 
 function SkillBar({ skill, delay }: { skill: { name: string; level: number }; delay: number }) {
   const [width, setWidth] = useState(0)
@@ -141,7 +100,7 @@ export default function Skills() {
         >
           <h3 className="text-2xl font-bold mb-8">Certifications</h3>
           <div className="grid md:grid-cols-4 gap-6">
-            {Certifications.map(
+            {certifications.map(
               (cert, index) => (
                 <motion.div
                   key={cert}

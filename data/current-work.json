@@ -1,0 +1,15 @@
+{
+  "currentProjects": [
+    {
+        "id": "1",
+        "title": "Portfolio v2",
+        "description": "A modern personal portfolio website built with Next.js and Tailwind CSS to showcase my projects and skills.",
+        "progress": 80,
+        "status": "In Development",
+        "tech": ["Next.js", "Tailwind CSS", "TypeScript"],
+        "icon": "BrainCircuit",
+        "color": "from-blue-500 to-green-400"
+    }
+  ]
+}
+

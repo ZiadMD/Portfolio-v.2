@@ -1,0 +1,39 @@
+{
+  "skillCategories": [
+    {
+      "title": "Software",
+      "skills": [
+        { "name": "C++", "level": 90 },
+        { "name": "Python", "level": 95 },
+        { "name": "JavaScript", "level": 35 },
+        { "name": "C", "level": 60 }
+      ]
+    },
+    {
+      "title": "AI",
+      "skills": [
+        { "name": "Machine Learning", "level": 88 },
+        { "name": "Computer Vision", "level": 80 },
+        { "name": "Natural Language Processing", "level": 55 },
+        { "name": "Generative AI", "level": 60 }
+      ]
+    },
+    {
+      "title": "Robotics",
+      "skills": [
+        { "name": "ROS", "level": 88 },
+        { "name": "Autonomous Driving", "level": 80 },
+        { "name": "Control Systems", "level": 55 },
+        { "name": "Robotics", "level": 60 }
+      ]
+    },
+    {
+      "title": "Tools & Others",
+      "skills": [
+        { "name": "Git/GitHub", "level": 93 },
+        { "name": "Linux", "level": 78 },
+        { "name": "Qt", "level": 75 }
+      ]
+    }
+  ]
+}

@@ -40,7 +40,7 @@ export default function Navigation() {
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent"
           >
-            Portfolio
+            Ziad M Gamal
           </motion.div>
 
           {/* Desktop Navigation */}
