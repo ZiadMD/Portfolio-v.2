@@ -1,15 +1,14 @@
 {
   "currentProjects": [
     {
-        "id": "1",
-        "title": "Portfolio v2",
-        "description": "A modern personal portfolio website built with Next.js and Tailwind CSS to showcase my projects and skills.",
-        "progress": 80,
-        "status": "In Development",
-        "tech": ["Next.js", "Tailwind CSS", "TypeScript"],
-        "icon": "BrainCircuit",
-        "color": "from-blue-500 to-green-400"
+      "id": "2",
+      "title": "Dr Freud",
+      "description": "An anonymous emotional support app for university students. It gives a safe, judgment-free space to talk, vent, and sort through thoughts using supportive AI, without trying to replace therapy.",
+      "progress": 15,
+      "status": "Planning",
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "AI Chat"],
+      "icon": "Brain",
+      "color": "from-purple-500 to-indigo-500"
     }
   ]
 }
-
