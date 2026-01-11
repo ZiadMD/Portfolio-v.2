@@ -1,38 +1,58 @@
 {
   "skillCategories": [
     {
-      "title": "Software",
+      "title": "Programming Languages",
+      "icon": "code",
       "skills": [
-        { "name": "C++", "level": 90 },
-        { "name": "Python", "level": 95 },
-        { "name": "JavaScript", "level": 35 },
-        { "name": "C", "level": 60 }
+        { "name": "C++", "icon": "cplusplus" },
+        { "name": "Python", "icon": "python" },
+        { "name": "SQL", "icon": "postgresql" },
+        { "name": "TypeScript", "icon": "typescript" },
+        { "name": "C#", "icon": "csharp" }
       ]
     },
     {
-      "title": "AI",
+      "title": "Frameworks & Libraries",
+      "icon": "layers",
       "skills": [
-        { "name": "Machine Learning", "level": 88 },
-        { "name": "Computer Vision", "level": 80 },
-        { "name": "Natural Language Processing", "level": 55 },
-        { "name": "Generative AI", "level": 60 }
+        { "name": "ROS2", "icon": "ros" },
+        { "name": "OpenCV", "icon": "opencv" },
+        { "name": "PyTorch", "icon": "pytorch" },
+        { "name": "TensorFlow", "icon": "tensorflow" },
+        { "name": "LangChain", "icon": "langchain" },
+        { "name": "FastAPI", "icon": "fastapi" }
       ]
     },
     {
-      "title": "Robotics",
+      "title": "Tools & Platforms",
+      "icon": "settings",
       "skills": [
-        { "name": "ROS", "level": 88 },
-        { "name": "Autonomous Driving", "level": 80 },
-        { "name": "Control Systems", "level": 55 },
-        { "name": "Robotics", "level": 60 }
+        { "name": "Git & GitHub", "icon": "github" },
+        { "name": "Linux", "icon": "linux" },
+        { "name": "Docker", "icon": "docker" },
+        { "name": "MongoDB", "icon": "mongodb" },
+        { "name": "CMake", "icon": "cmake" }
       ]
     },
     {
-      "title": "Tools & Others",
+      "title": "Software Engineering",
+      "icon": "bookopen",
       "skills": [
-        { "name": "Git/GitHub", "level": 93 },
-        { "name": "Linux", "level": 78 },
-        { "name": "Qt", "level": 75 }
+        { "name": "OOP", "icon": "layers" },
+        { "name": "SOLID Principles", "icon": "settings" },
+        { "name": "Design Patterns", "icon": "bookopen" }
+      ]
+    },
+    {
+      "title": "AI & ML",
+      "icon": "brain",
+      "skills": [
+        { "name": "Machine Learning", "icon": "brain" },
+        { "name": "Deep Learning", "icon": "cpu" },
+        { "name": "Computer Vision", "icon": "eye" },
+        { "name": "Generative AI", "icon": "sparkles" },
+        { "name": "RAG", "icon": "messagesquare" },
+        { "name": "Prompt Engineering", "icon": "wand" }
       ]
     }
   ]

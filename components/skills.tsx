@@ -1,48 +1,214 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { motion, useInView, useAnimation } from "framer-motion"
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import skillsData from "@/data/skills.json"
 import certificationsData from "@/data/certifications.json"
+
+// Official brand icons from react-icons
+import { 
+  SiCplusplus, 
+  SiPython, 
+  SiTypescript,
+  SiPostgresql,
+  SiRos,
+  SiOpencv,
+  SiPytorch,
+  SiTensorflow,
+  SiLangchain,
+  SiFastapi,
+  SiGithub,
+  SiLinux,
+  SiDocker,
+  SiMongodb,
+  SiCmake,
+  SiJavascript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiAmazonwebservices,
+  SiKubernetes,
+  SiRedis,
+  SiGraphql,
+  SiFlask,
+  SiDjango,
+  SiVuedotjs,
+  SiAngular,
+  SiTailwindcss,
+  SiPostman,
+  SiJira,
+  SiNotion,
+  SiFigma,
+  SiVercel,
+  SiHuggingface,
+  SiOpenai,
+  SiNumpy,
+  SiPandas,
+  SiScikitlearn,
+  SiKeras,
+  SiJupyter,
+  SiArduino,
+  SiRaspberrypi,
+  SiUnity,
+  SiGodotengine,
+  SiBlender,
+  SiGooglecloud,
+  SiMysql,
+  SiSqlite,
+  SiFirebase,
+  SiSupabase,
+  SiPrisma,
+  SiElectron,
+  SiRust,
+  SiGo,
+  SiSwift,
+  SiKotlin,
+  SiDart,
+  SiFlutter,
+} from "react-icons/si"
+
+import { TbBrandCSharp } from "react-icons/tb"
+
+// Lucide icons for concepts without brand icons
+import {
+  Code2,
+  Brain,
+  Eye,
+  Sparkles,
+  Layers,
+  Settings,
+  BookOpen,
+  Cpu,
+  MessageSquare,
+  Wand2,
+  Database,
+  Server,
+  Globe,
+  Terminal,
+  Wrench,
+  Cog,
+  Blocks,
+  Network,
+  Shield,
+  Zap,
+  Bot,
+  GitBranch,
+} from "lucide-react"
 
 const { skillCategories } = skillsData
 const { certifications } = certificationsData
 
-function SkillBar({ skill, delay }: { skill: { name: string; level: number }; delay: number }) {
-  const [width, setWidth] = useState(0)
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+// ===== ICON REGISTRY =====
+// Add new icons here to use them in skills.json
+// Format: "iconKey": IconComponent
+const iconRegistry: { [key: string]: React.ComponentType<{ className?: string }> } = {
+  // Brand Icons (react-icons/si)
+  cplusplus: SiCplusplus,
+  python: SiPython,
+  typescript: SiTypescript,
+  javascript: SiJavascript,
+  csharp: TbBrandCSharp,
+  postgresql: SiPostgresql,
+  mysql: SiMysql,
+  sqlite: SiSqlite,
+  ros: SiRos,
+  opencv: SiOpencv,
+  pytorch: SiPytorch,
+  tensorflow: SiTensorflow,
+  langchain: SiLangchain,
+  fastapi: SiFastapi,
+  flask: SiFlask,
+  django: SiDjango,
+  github: SiGithub,
+  linux: SiLinux,
+  docker: SiDocker,
+  kubernetes: SiKubernetes,
+  mongodb: SiMongodb,
+  redis: SiRedis,
+  firebase: SiFirebase,
+  supabase: SiSupabase,
+  prisma: SiPrisma,
+  cmake: SiCmake,
+  react: SiReact,
+  nextjs: SiNextdotjs,
+  nodejs: SiNodedotjs,
+  vuejs: SiVuedotjs,
+  angular: SiAngular,
+  tailwindcss: SiTailwindcss,
+  graphql: SiGraphql,
+  aws: SiAmazonwebservices,
+  gcp: SiGooglecloud,
+  vercel: SiVercel,
+  postman: SiPostman,
+  jira: SiJira,
+  notion: SiNotion,
+  figma: SiFigma,
+  huggingface: SiHuggingface,
+  openai: SiOpenai,
+  numpy: SiNumpy,
+  pandas: SiPandas,
+  scikitlearn: SiScikitlearn,
+  keras: SiKeras,
+  jupyter: SiJupyter,
+  arduino: SiArduino,
+  raspberrypi: SiRaspberrypi,
+  unity: SiUnity,
+  godot: SiGodotengine,
+  blender: SiBlender,
+  electron: SiElectron,
+  rust: SiRust,
+  go: SiGo,
+  swift: SiSwift,
+  kotlin: SiKotlin,
+  dart: SiDart,
+  flutter: SiFlutter,
+  
+  // Concept Icons (lucide-react)
+  code: Code2,
+  brain: Brain,
+  eye: Eye,
+  sparkles: Sparkles,
+  layers: Layers,
+  settings: Settings,
+  bookopen: BookOpen,
+  cpu: Cpu,
+  messagesquare: MessageSquare,
+  wand: Wand2,
+  database: Database,
+  server: Server,
+  globe: Globe,
+  terminal: Terminal,
+  wrench: Wrench,
+  cog: Cog,
+  blocks: Blocks,
+  network: Network,
+  shield: Shield,
+  zap: Zap,
+  bot: Bot,
+  gitbranch: GitBranch,
+}
 
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setWidth(skill.level)
-        controls.start({
-          width: `${skill.level}%`,
-          transition: { duration: 1.5, ease: "easeOut" },
-        })
-      }, delay)
-      return () => clearTimeout(timer)
-    }
-  }, [isInView, skill.level, delay, controls])
+// Helper function to get icon component
+function getIcon(iconKey: string | undefined, size: "sm" | "md" = "sm") {
+  const sizeClass = size === "sm" ? "w-5 h-5" : "w-6 h-6"
+  const IconComponent = iconKey ? iconRegistry[iconKey] : Code2
+  return IconComponent ? <IconComponent className={sizeClass} /> : <Code2 className={sizeClass} />
+}
 
+function SkillItem({ skill, delay }: { skill: { name: string; icon?: string }; delay: number }) {
   return (
-    <div ref={ref} className="mb-6">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-gray-300 font-medium">{skill.name}</span>
-        <span className="text-blue-400 font-bold">{width}%</span>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: delay * 0.05, duration: 0.3 }}
+      whileHover={{ scale: 1.08, y: -3 }}
+      className="group flex items-center gap-2.5 bg-gradient-to-br from-gray-800/60 to-gray-900/60 hover:from-blue-900/30 hover:to-purple-900/30 border border-gray-700/50 hover:border-blue-500/60 rounded-xl px-4 py-2.5 transition-all duration-300 cursor-default shadow-lg hover:shadow-blue-500/10"
+    >
+      <div className="text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+        {getIcon(skill.icon, "sm")}
       </div>
-      <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={controls}
-          className="h-full bg-gradient-to-r from-blue-500 to-green-400 rounded-full relative"
-        >
-          <div className="absolute inset-0 bg-white/20 animate-pulse" />
-        </motion.div>
-      </div>
-    </div>
+      <span className="text-gray-200 group-hover:text-white font-medium text-sm transition-colors duration-300">{skill.name}</span>
+    </motion.div>
   )
 }
 
@@ -69,22 +235,32 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ delay: 0.2 * categoryIndex, duration: 0.8 }}
-              className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
+              transition={{ delay: 0.1 * categoryIndex, duration: 0.6 }}
+              className="group relative bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-blue-500/40 transition-all duration-500 overflow-hidden"
             >
-              <h3 className="text-xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text">
-                {category.title}
-              </h3>
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Category header */}
+              <div className="relative flex items-center gap-3 mb-5">
+                <div className="p-2.5 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl border border-blue-500/20 text-blue-400">
+                  {getIcon(category.icon, "md")}
+                </div>
+                <h3 className="text-lg font-bold text-white">
+                  {category.title}
+                </h3>
+              </div>
 
-              <div className="space-y-4">
+              {/* Skills grid */}
+              <div className="relative flex flex-wrap gap-2.5">
                 {category.skills.map((skill, skillIndex) => (
-                  <SkillBar key={skill.name} skill={skill} delay={categoryIndex * 200 + skillIndex * 100} />
+                  <SkillItem key={skill.name} skill={skill} delay={categoryIndex * 4 + skillIndex} />
                 ))}
               </div>
             </motion.div>
