@@ -14,6 +14,7 @@ export default function Contact() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -21,16 +22,34 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus("idle")
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/ziadmohamedgamal25@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      })
 
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
-
-    // Show success message (you can implement a toast notification here)
-    alert("Message sent successfully!")
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -145,12 +164,25 @@ export default function Contact() {
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <form 
-              action="https://formsubmit.co/ziadmohamedgamal25@gmail.com" 
-              method="POST"
+              onSubmit={handleSubmit}
               className="space-y-6"
             >
               <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
                 <h3 className="text-xl font-bold mb-6">Send a Message</h3>
+
+                {/* Success Message */}
+                {submitStatus === "success" && (
+                  <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg">
+                    <p className="text-green-400 text-center">✓ Message sent successfully! I'll get back to you soon.</p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg">
+                    <p className="text-red-400 text-center">✕ Failed to send message. Please try again or email me directly.</p>
+                  </div>
+                )}
 
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
@@ -161,6 +193,8 @@ export default function Contact() {
                       type="text"
                       id="name"
                       name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white"
                       placeholder="Your name"
@@ -175,6 +209,8 @@ export default function Contact() {
                       type="email"
                       id="email"
                       name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white"
                       placeholder="your@email.com"
@@ -190,6 +226,8 @@ export default function Contact() {
                     type="text"
                     id="subject"
                     name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white"
                     placeholder="What's this about?"
@@ -203,6 +241,8 @@ export default function Contact() {
                   <textarea
                     id="message"
                     name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     required
                     rows={5}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white resize-none"
@@ -212,12 +252,22 @@ export default function Contact() {
 
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-blue-500 to-green-400 px-8 py-3 rounded-lg text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  className={`w-full bg-gradient-to-r from-blue-500 to-green-400 px-8 py-3 rounded-lg text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <Send size={20} />
-                  <span>Send Message</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </motion.button>
               </div>
             </form>
