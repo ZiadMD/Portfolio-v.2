@@ -28,7 +28,7 @@ export default function Projects() {
         >
           <h2 className="text-4xl font-bold mb-4">
             My{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text ">Projects</span>
+            <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Projects</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             A collection of projects that showcase my skills and passion for creating innovative digital solutions.

@@ -281,8 +281,8 @@ export default function Contact() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-center mt-20 pt-8 border-t border-gray-800"
         >
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} Ziad Mohamed. Built with Next.js and Framer Motion.
+          <p className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+            © {new Date().getFullYear()} Ziad Mohamed.
           </p>
         </motion.div>
       </div>

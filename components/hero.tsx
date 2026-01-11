@@ -22,7 +22,7 @@ export default function Hero() {
               className="text-5xl md:text-7xl font-bold"
             >
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent">
                 Ziad Mohamed
               </span>
             </motion.h1>

@@ -228,7 +228,7 @@ export default function Skills() {
         >
           <h2 className="text-4xl font-bold mb-4">
             Skills &{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text ">Expertise</span>
+            <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Expertise</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Technologies and tools I use to bring ideas to life and create exceptional digital experiences.

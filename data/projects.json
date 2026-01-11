@@ -4,17 +4,17 @@
       "id": 1,
       "title": "AuthMaster",
       "description": "A secure login system built with Python's Tkinter library featuring sign-up, sign-in, and SHA-256 password hashing capabilities.",
-      "image": "Projects/AuthMaster.jpeg",
-      "tech": ["Python", "GUI", "Tkinter", "SHA-256"],
+      "image": "Projects/AuthMaster.png",
+      "tech": ["Python", "GUI", "Hashing"],
       "category": "Software",
       "demoUrl": "#",
       "githubUrl": "https://github.com/ZiadMD/AuthMaster"
     },
     {
       "id": 2,
-      "title": "LMS",
+      "title": "Library Management System",
       "description": "A Library Management System implemented in C++ using doubly linked lists for efficient book record management with sorting and searching capabilities.",
-      "image": "Projects/LMS.jpeg",
+      "image": "Projects/LMS.png",
       "tech": ["C++", "Data Structures", "Algorithms"],
       "category": "Software",
       "demoUrl": "#",
@@ -24,7 +24,7 @@
       "id": 3,
       "title": "Qt-Cascade-app",
       "description": "A desktop object detection application built with Qt and OpenCV using Haar cascade classifiers for real-time computer vision tasks.",
-      "image": "Projects/Qt-Cascade-app.jpeg",
+      "image": "Projects/Qt-Cascade-app.png",
       "tech": ["C++", "Qt", "OpenCV", "Computer Vision"],
       "category": "Software",
       "demoUrl": "#",
@@ -52,13 +52,23 @@
     },
     {
       "id": 6,
-      "title": "Numerical Analysis Project",
+      "title": "Numerical Analysis Application",
       "description": "A Linux-optimized C++17 application implementing numerical analysis algorithms with Qt6 GUI for root finding and curve fitting.",
       "image": "Projects/NAP.png",
-      "tech": ["C++", "Qt", "Math", "Linux"],
+      "tech": ["C++", "Qt", "Linux"],
       "category": "Software",
       "demoUrl": "#",
       "githubUrl": "https://github.com/ZiadMD/Numerical-Analysis-project"
+    },
+    {
+      "id": 7,
+      "title": "NASA 2025 - TERRA Climate Platform",
+      "description": "An educational web platform using Scikit-learn ML models to predict climate patterns from NASA data, featuring a Gemini API chatbot with custom prompt engineering and an interactive game to raise youth climate awareness.",
+      "image": "Projects/NASA-2025.png",
+      "tech": ["Next.js", "TypeScript", "Scikit-learn", "Gemini API", "Machine Learning"],
+      "category": "AI",
+      "demoUrl": "https://spatuim.vercel.app/",
+      "githubUrl": "https://github.com/ZiadMD/Nasa-2025"
     }
   ],
   "categories": ["All", "Software", "AI", "Robotics"]
