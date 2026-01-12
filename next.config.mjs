@@ -7,8 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
-  },
+    unoptimized: true, // Required for static export (GitHub Pages)
+  }
 }
-
 export default nextConfig
